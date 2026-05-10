@@ -206,12 +206,12 @@
 
     .footer-link {
       font-size: .875rem;
-      color: rgba(245,237,214,.55);
+      color: rgba(28,15,8,.55);
       text-decoration: none;
       font-family: 'Lora', serif;
       transition: color 200ms ease;
     }
-    .footer-link:hover { color: var(--color-cream); }
+    .footer-link:hover { color: var(--color-espresso); }
 
     /* ── Cards ── */
     .card-base {
@@ -600,6 +600,57 @@
           linear-gradient(to top, rgba(28,15,8,.92) 0%, rgba(28,15,8,.55) 40%, transparent 80%) !important;
       }
       .hero-eyebrow { color: rgba(255,255,255,.85) !important; }
+    }
+
+    /* ── Catering tabs ── */
+    .catering-split { display:grid; grid-template-columns:55% 45%; min-height:560px; }
+    .catering-img-col { position:relative; overflow:hidden; background:var(--color-roast); }
+    .catering-img-col img { width:100%; height:100%; object-fit:cover; display:block; opacity:.88; transition:transform 700ms ease,opacity 700ms ease; }
+    .catering-img-col:hover img { transform:scale(1.04); opacity:.95; }
+    .catering-img-fade { position:absolute; inset:0; background:linear-gradient(to right,transparent 45%,var(--color-espresso) 92%); pointer-events:none; }
+    .catering-text-col { padding:4.5rem 3.5rem 4.5rem 3rem; display:flex; flex-direction:column; justify-content:center; }
+    .catering-eyebrow { font-size:.6875rem; letter-spacing:.16em; text-transform:uppercase; color:var(--color-copper); font-family:'Lora',serif; margin-bottom:1.5rem; }
+    .catering-heading { font-size:clamp(2.25rem,4vw,3.5rem); color:var(--color-cream); letter-spacing:-.04em; line-height:1; margin-bottom:1.5rem; }
+    .catering-desc { color:var(--color-parchment); line-height:1.78; font-size:.9375rem; margin-bottom:2rem; max-width:400px; }
+    .catering-features { list-style:none; padding:0; margin:0 0 2.75rem; display:flex; flex-direction:column; gap:.8rem; }
+    .catering-features li { display:flex; align-items:center; gap:1rem; color:var(--color-parchment); font-size:.9rem; }
+    .catering-features li::before { content:''; width:18px; height:1px; background:var(--color-copper); flex-shrink:0; }
+    .catering-cta { align-self:flex-start; padding:.875rem 2.25rem; font-size:.9375rem; }
+    .cpanel { display:block; }
+    .cpanel-hidden { display:none; }
+    @keyframes cpanel-in { from { opacity:0; transform:translateX(18px); } to { opacity:1; transform:translateX(0); } }
+    .cpanel-entering { animation:cpanel-in 380ms cubic-bezier(.25,.46,.45,.94) forwards; }
+    .catering-tab { background:none; border:none; cursor:pointer; text-align:center; font-family:'Cormorant Garamond',serif; }
+    .catering-tab:focus-visible { outline:2px solid var(--color-copper); outline-offset:3px; border-radius:2px; }
+    @media (max-width: 767px) {
+      .catering-split { grid-template-columns:1fr; }
+      .catering-img-col { min-height:260px; }
+      .catering-img-fade { background:linear-gradient(to bottom,transparent 45%,var(--color-espresso) 95%); }
+      .catering-text-col { padding:2.5rem 1.5rem 3rem; }
+      .catering-heading { font-size:2.25rem; }
+      .catering-desc { max-width:100%; }
+    }
+
+    /* ── Contact section ── */
+    .k-field { position:relative; }
+    .k-label { display:block; font-size:.5625rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(245,237,214,.35); font-family:'Lora',serif; margin-bottom:.7rem; transition:color 250ms ease; }
+    .k-field:focus-within .k-label { color:var(--color-copper); }
+    .k-input { width:100%; background:transparent; border:none; outline:none; font-family:'Lora',serif; font-size:.9375rem; color:var(--color-cream); padding:.4rem 0 .6rem; caret-color:var(--color-copper); }
+    .k-input::placeholder { color:rgba(245,237,214,.22); }
+    .k-line { height:1px; background:rgba(245,237,214,.18); position:relative; overflow:hidden; }
+    .k-line::after { content:''; position:absolute; inset:0; background:var(--color-copper); transform:scaleX(0); transform-origin:left; transition:transform 380ms cubic-bezier(.25,.46,.45,.94); }
+    .k-field:focus-within .k-line::after { transform:scaleX(1); }
+    .k-submit { display:inline-flex; align-items:center; gap:.875rem; padding:.9375rem 2.25rem; background:var(--color-copper); color:var(--color-espresso); border:none; cursor:pointer; font-family:'Cormorant Garamond',serif; font-size:1rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; transition:background 250ms ease, transform 200ms cubic-bezier(.34,1.56,.64,1), box-shadow 250ms ease; }
+    .k-submit:hover { background:var(--color-brass); transform:translateY(-2px); box-shadow:0 10px 28px rgba(184,115,51,.3); }
+    .k-submit:active { transform:translateY(0); box-shadow:none; }
+    .k-info-label { font-size:.5625rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(245,237,214,.3); font-family:'Lora',serif; margin:0 0 .6rem; }
+    .k-info-value { font-family:'Lora',serif; font-size:.9375rem; color:var(--color-parchment); margin:0; line-height:1.6; }
+    .k-info-link { text-decoration:none; transition:color 200ms ease; }
+    .k-info-link:hover { color:var(--color-copper); }
+    @media (max-width: 900px) {
+      .k-split { grid-template-columns:1fr !important; }
+      .k-divider-v { display:none !important; }
+      .k-divider-h { display:block !important; }
     }
   </style>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
@@ -1161,6 +1212,26 @@
 
         </div>
 
+        <!-- Stats pod milníkovou tabulkou -->
+        <div style="margin-top:2.5rem;padding-top:2.25rem;border-top:1px solid rgba(184,115,51,.18);display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:1rem">
+          <div class="reveal">
+            <p class="font-display font-black stat-number" data-count="1200" data-suffix="" data-format="spaced" style="font-size:clamp(2rem,3vw,2.75rem);color:var(--color-copper);letter-spacing:-.04em;line-height:1">1 200</p>
+            <p style="font-family:'Lora',serif;font-style:italic;font-size:.8125rem;color:var(--color-bark);margin-top:.35rem">káv denně</p>
+          </div>
+          <div class="reveal" data-delay="100">
+            <p class="font-display font-black stat-number" data-count="30" data-suffix="+" style="font-size:clamp(2rem,3vw,2.75rem);color:var(--color-copper);letter-spacing:-.04em;line-height:1">30+</p>
+            <p style="font-family:'Lora',serif;font-style:italic;font-size:.8125rem;color:var(--color-bark);margin-top:.35rem">let tradice</p>
+          </div>
+          <div class="reveal" data-delay="200">
+            <p class="font-display font-black stat-number" data-count="200" data-suffix="+" style="font-size:clamp(2rem,3vw,2.75rem);color:var(--color-copper);letter-spacing:-.04em;line-height:1">200+</p>
+            <p style="font-family:'Lora',serif;font-style:italic;font-size:.8125rem;color:var(--color-bark);margin-top:.35rem">spokojených akcí</p>
+          </div>
+          <div class="reveal" data-delay="300">
+            <p class="font-display font-black stat-number" data-count="2" data-suffix="" style="font-size:clamp(2rem,3vw,2.75rem);color:var(--color-copper);letter-spacing:-.04em;line-height:1">2</p>
+            <p style="font-family:'Lora',serif;font-style:italic;font-size:.8125rem;color:var(--color-bark);margin-top:.35rem">typy vybavení</p>
+          </div>
+        </div>
+
       </div>
 
   </div>
@@ -1174,14 +1245,24 @@
     <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem">
       <div>
         <p class="section-label" style="margin-bottom:.5rem">Sledujte nás</p>
-        <h2 class="font-display font-black" style="font-size:clamp(1.75rem,4vw,2.75rem);color:var(--color-cream);letter-spacing:-.03em;line-height:1.1">Van v&nbsp;akci</h2>
+        <h2 class="font-display font-black" style="font-size:clamp(1.75rem,4vw,2.75rem);color:var(--color-cream);letter-spacing:-.03em;line-height:1.1">Henrietta <em style="color:var(--color-copper)">v&nbsp;akci</em></h2>
       </div>
-      <a href="https://www.instagram.com/Henrietta_coffee" target="_blank" rel="noopener"
-        style="display:inline-flex;align-items:center;gap:.5rem;font-family:'Lora',serif;font-size:.875rem;color:var(--color-copper);text-decoration:none;border-bottom:1px solid var(--color-copper);padding-bottom:2px;transition:opacity 200ms ease"
-        onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-        @Henrietta_coffee
-      </a>
+      <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap">
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/Henrietta_coffee" target="_blank" rel="noopener"
+          style="display:inline-flex;align-items:center;gap:.625rem;padding:.7rem 1.25rem;border-radius:3px;background:rgba(184,115,51,.15);border:1.5px solid rgba(184,115,51,.4);color:var(--color-copper);text-decoration:none;font-family:'Lora',serif;font-size:.875rem;font-weight:600;letter-spacing:.02em;transition:background 200ms ease,border-color 200ms ease,transform 200ms var(--ease-spring)"
+          onmouseover="this.style.background='rgba(184,115,51,.28)';this.style.borderColor='var(--color-copper)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(184,115,51,.15)';this.style.borderColor='rgba(184,115,51,.4)';this.style.transform='translateY(0)'">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          Instagram
+        </a>
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/HenriettaCoffee" target="_blank" rel="noopener"
+          style="display:inline-flex;align-items:center;gap:.625rem;padding:.7rem 1.25rem;border-radius:3px;background:rgba(184,115,51,.15);border:1.5px solid rgba(184,115,51,.4);color:var(--color-copper);text-decoration:none;font-family:'Lora',serif;font-size:.875rem;font-weight:600;letter-spacing:.02em;transition:background 200ms ease,border-color 200ms ease,transform 200ms var(--ease-spring)"
+          onmouseover="this.style.background='rgba(184,115,51,.28)';this.style.borderColor='var(--color-copper)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(184,115,51,.15)';this.style.borderColor='rgba(184,115,51,.4)';this.style.transform='translateY(0)'">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Facebook
+        </a>
+      </div>
     </div>
   </div>
   <div class="marquee-track">
@@ -1217,54 +1298,72 @@
 
     <div class="grid md:grid-cols-3 gap-6">
 
-      <!-- Ethiopia -->
-      <div class="card-base reveal" data-delay="0" style="background-color:white;overflow:hidden">
-        <div class="img-overlay" style="height:220px">
-          <img src="https://placehold.co/480x320/3D1A00/C9A84C?text=Etiopie" alt="Etiopská káva" loading="lazy" style="mix-blend-mode:normal">
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,15,8,.7) 0%,transparent 60%);z-index:1"></div>
-          <div style="position:absolute;bottom:1rem;left:1rem;z-index:2">
-            <span style="font-size:1.5rem">🇪🇹</span>
+      <!-- Premium -->
+      <div class="reveal" data-delay="0" style="background:white;border-radius:4px;overflow:hidden;box-shadow:0 4px 12px rgba(28,15,8,.14),0 24px 56px rgba(28,15,8,.22),0 0 0 1px rgba(184,115,51,.18);display:flex;flex-direction:column">
+        <div style="background:var(--color-linen);height:300px;display:flex;align-items:center;justify-content:center;padding:2rem 3rem;position:relative">
+          <img src="brand_assets/kava3.webp" alt="HENRI Premium" loading="lazy"
+            style="height:100%;width:auto;object-fit:contain;mix-blend-mode:multiply;filter:contrast(1.02) saturate(1.05)">
+          <div style="position:absolute;top:1rem;left:1.25rem">
+            <span style="font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(74,40,16,.4);font-family:'Lora',serif">Pražírna HENRI</span>
           </div>
         </div>
-        <div class="p-5">
-          <h3 class="font-display font-bold text-xl" style="color:var(--color-espresso);letter-spacing:-.02em;margin-bottom:.5rem;font-style:italic">Etiopie</h3>
-          <p style="font-size:.875rem;color:var(--color-copper);font-family:'Lora',serif;font-style:italic;margin-bottom:.75rem">Borůvky · citrus · tmavá čokoláda</p>
-          <p style="font-size:.9rem;color:var(--color-bark);line-height:1.65;margin-bottom:1.25rem">Přirozené zpracování z oblasti Yirgacheffe. Ovocná komplexita s dlouhým čistým závěrem.</p>
-          <a href="https://henri.cz" target="_blank" rel="noopener" class="btn-ghost" style="color:var(--color-bark);border-bottom-color:transparent">Koupit domů <span class="arrow">→</span></a>
+        <div style="padding:1.5rem 1.75rem;flex:1;display:flex;flex-direction:column">
+          <p style="font-size:.625rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(74,40,16,.35);font-family:'Lora',serif;margin-bottom:.375rem">80% Arabica · 20% Robusta</p>
+          <h3 class="font-display font-bold" style="font-size:1.25rem;color:var(--color-espresso);letter-spacing:-.02em;margin-bottom:.5rem">HENRI Premium</h3>
+          <p style="font-size:.8125rem;color:var(--color-copper);font-family:'Lora',serif;font-style:italic;margin-bottom:.875rem">Čokoláda · karamel · jemná kyselost</p>
+          <p style="font-size:.875rem;color:var(--color-bark);line-height:1.7;margin-bottom:1.5rem;flex:1">Pečlivě komponovaný blend pro každodenní espresso. Plné tělo, hedvábná crema — snídaňová káva, na které si pochutnáte každý den.</p>
+          <a href="https://henri.cz" target="_blank" rel="noopener"
+            style="display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.375rem;background:var(--color-copper);color:var(--color-espresso);font-family:'Lora',serif;font-size:.875rem;font-weight:700;letter-spacing:.01em;border-radius:2px;text-decoration:none;box-shadow:0 2px 8px rgba(184,115,51,.35);transition:background 200ms ease,transform 200ms var(--ease-spring),box-shadow 200ms ease;align-self:flex-start"
+            onmouseover="this.style.background='var(--color-brass)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(184,115,51,.5)'"
+            onmouseout="this.style.background='var(--color-copper)';this.style.transform='translateY(0)';this.style.boxShadow='0 2px 8px rgba(184,115,51,.35)'">
+            Koupit domů →
+          </a>
         </div>
       </div>
 
-      <!-- Colombia -->
-      <div class="card-base reveal" data-delay="100" style="background-color:white;overflow:hidden">
-        <div class="img-overlay" style="height:220px">
-          <img src="https://placehold.co/480x320/2D1200/B87333?text=Kolumbie" alt="Kolumbijská káva" loading="lazy">
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,15,8,.7) 0%,transparent 60%);z-index:1"></div>
-          <div style="position:absolute;bottom:1rem;left:1rem;z-index:2">
-            <span style="font-size:1.5rem">🇨🇴</span>
+      <!-- Columbia -->
+      <div class="reveal" data-delay="100" style="background:white;border-radius:4px;overflow:hidden;box-shadow:0 4px 12px rgba(28,15,8,.14),0 24px 56px rgba(28,15,8,.22),0 0 0 1px rgba(184,115,51,.18);display:flex;flex-direction:column">
+        <div style="background:var(--color-linen);height:300px;display:flex;align-items:center;justify-content:center;padding:2rem 3rem;position:relative">
+          <img src="brand_assets/kava2.webp" alt="HENRI Columbia" loading="lazy"
+            style="height:100%;width:auto;object-fit:contain;mix-blend-mode:multiply;filter:contrast(1.02) saturate(1.05)">
+          <div style="position:absolute;top:1rem;left:1.25rem">
+            <span style="font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(74,40,16,.4);font-family:'Lora',serif">Pražírna HENRI</span>
           </div>
         </div>
-        <div class="p-5">
-          <h3 class="font-display font-bold text-xl" style="color:var(--color-espresso);letter-spacing:-.02em;margin-bottom:.5rem;font-style:italic">Kolumbie</h3>
-          <p style="font-size:.875rem;color:var(--color-copper);font-family:'Lora',serif;font-style:italic;margin-bottom:.75rem">Karamel · červené ovoce · ořechy</p>
-          <p style="font-size:.9rem;color:var(--color-bark);line-height:1.65;margin-bottom:1.25rem">Mytá káva z Huily. Vyvážené tělo, přirozená sladkost — ideální espresso i filtr.</p>
-          <a href="https://henri.cz" target="_blank" rel="noopener" class="btn-ghost" style="color:var(--color-bark);border-bottom-color:transparent">Koupit domů <span class="arrow">→</span></a>
+        <div style="padding:1.5rem 1.75rem;flex:1;display:flex;flex-direction:column">
+          <p style="font-size:.625rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(74,40,16,.35);font-family:'Lora',serif;margin-bottom:.375rem">100% Arabica · Kolumbie</p>
+          <h3 class="font-display font-bold" style="font-size:1.25rem;color:var(--color-espresso);letter-spacing:-.02em;margin-bottom:.5rem">HENRI Columbia</h3>
+          <p style="font-size:.8125rem;color:var(--color-copper);font-family:'Lora',serif;font-style:italic;margin-bottom:.875rem">Karamel · červené ovoce · ořechy</p>
+          <p style="font-size:.875rem;color:var(--color-bark);line-height:1.7;margin-bottom:1.5rem;flex:1">Mytá arabica z Huily. Vyvážené tělo, přirozená sladkost a jemná ovocnost — funguje skvěle jako espresso i filtr.</p>
+          <a href="https://henri.cz" target="_blank" rel="noopener"
+            style="display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.375rem;background:var(--color-copper);color:var(--color-espresso);font-family:'Lora',serif;font-size:.875rem;font-weight:700;letter-spacing:.01em;border-radius:2px;text-decoration:none;box-shadow:0 2px 8px rgba(184,115,51,.35);transition:background 200ms ease,transform 200ms var(--ease-spring),box-shadow 200ms ease;align-self:flex-start"
+            onmouseover="this.style.background='var(--color-brass)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(184,115,51,.5)'"
+            onmouseout="this.style.background='var(--color-copper)';this.style.transform='translateY(0)';this.style.boxShadow='0 2px 8px rgba(184,115,51,.35)'">
+            Koupit domů →
+          </a>
         </div>
       </div>
 
-      <!-- Brazil -->
-      <div class="card-base reveal" data-delay="200" style="background-color:white;overflow:hidden">
-        <div class="img-overlay" style="height:220px">
-          <img src="https://placehold.co/480x320/1A0A00/C9A84C?text=Brazílie" alt="Brazilská káva" loading="lazy">
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,15,8,.7) 0%,transparent 60%);z-index:1"></div>
-          <div style="position:absolute;bottom:1rem;left:1rem;z-index:2">
-            <span style="font-size:1.5rem">🇧🇷</span>
+      <!-- Brasil -->
+      <div class="reveal" data-delay="200" style="background:white;border-radius:4px;overflow:hidden;box-shadow:0 4px 12px rgba(28,15,8,.14),0 24px 56px rgba(28,15,8,.22),0 0 0 1px rgba(184,115,51,.18);display:flex;flex-direction:column">
+        <div style="background:var(--color-linen);height:300px;display:flex;align-items:center;justify-content:center;padding:2rem 3rem;position:relative">
+          <img src="brand_assets/kava1.webp" alt="HENRI Brasil" loading="lazy"
+            style="height:100%;width:auto;object-fit:contain;mix-blend-mode:multiply;filter:contrast(1.02) saturate(1.05)">
+          <div style="position:absolute;top:1rem;left:1.25rem">
+            <span style="font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(74,40,16,.4);font-family:'Lora',serif">Pražírna HENRI</span>
           </div>
         </div>
-        <div class="p-5">
-          <h3 class="font-display font-bold text-xl" style="color:var(--color-espresso);letter-spacing:-.02em;margin-bottom:.5rem;font-style:italic">Brazílie</h3>
-          <p style="font-size:.875rem;color:var(--color-copper);font-family:'Lora',serif;font-style:italic;margin-bottom:.75rem">Mandle · mléčná čokoláda · med</p>
-          <p style="font-size:.9rem;color:var(--color-bark);line-height:1.65;margin-bottom:1.25rem">Pulpovaná přírodní z Cerrado Mineiro. Krémové tělo, nízká kyselost — klasika ve dvojce.</p>
-          <a href="https://henri.cz" target="_blank" rel="noopener" class="btn-ghost" style="color:var(--color-bark);border-bottom-color:transparent">Koupit domů <span class="arrow">→</span></a>
+        <div style="padding:1.5rem 1.75rem;flex:1;display:flex;flex-direction:column">
+          <p style="font-size:.625rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(74,40,16,.35);font-family:'Lora',serif;margin-bottom:.375rem">100% Arabica · Brazílie</p>
+          <h3 class="font-display font-bold" style="font-size:1.25rem;color:var(--color-espresso);letter-spacing:-.02em;margin-bottom:.5rem">HENRI Brasil</h3>
+          <p style="font-size:.8125rem;color:var(--color-copper);font-family:'Lora',serif;font-style:italic;margin-bottom:.875rem">Mandle · mléčná čokoláda · med</p>
+          <p style="font-size:.875rem;color:var(--color-bark);line-height:1.7;margin-bottom:1.5rem;flex:1">Pulpovaná přírodní z Cerrado Mineiro. Krémové tělo, nízká kyselost — klasika pro milovníky jemného espressa.</p>
+          <a href="https://henri.cz" target="_blank" rel="noopener"
+            style="display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.375rem;background:var(--color-copper);color:var(--color-espresso);font-family:'Lora',serif;font-size:.875rem;font-weight:700;letter-spacing:.01em;border-radius:2px;text-decoration:none;box-shadow:0 2px 8px rgba(184,115,51,.35);transition:background 200ms ease,transform 200ms var(--ease-spring),box-shadow 200ms ease;align-self:flex-start"
+            onmouseover="this.style.background='var(--color-brass)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(184,115,51,.5)'"
+            onmouseout="this.style.background='var(--color-copper)';this.style.transform='translateY(0)';this.style.boxShadow='0 2px 8px rgba(184,115,51,.35)'">
+            Koupit domů →
+          </a>
         </div>
       </div>
 
@@ -1272,43 +1371,26 @@
 
     <div class="text-center mt-10 reveal" data-delay="300">
       <p style="font-family:'Lora',serif;font-style:italic;font-size:.9375rem;color:var(--color-bark);opacity:.7;margin-bottom:1rem">Celý sortiment výběrové kávy najdete v e-shopu Pražírny HENRI</p>
-      <a href="https://henri.cz" target="_blank" rel="noopener" class="btn-ghost" style="color:var(--color-bark)">Navštívit henri.cz <span class="arrow">→</span></a>
+      <a href="https://henri.cz" target="_blank" rel="noopener" class="btn-ghost" style="color:var(--color-bark);border-bottom-color:var(--color-bark)">Navštívit henri.cz <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
+
+<!-- section divider: linen → espresso -->
+<div aria-hidden="true" style="background:#FAF6EC;line-height:0;margin-bottom:-1px;position:relative;z-index:1">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 72" preserveAspectRatio="none" style="display:block;width:100%;height:72px">
+    <polygon points="0,72 1440,0 1440,72" fill="#1C0F08"/>
+  </svg>
+</div>
 
 <!-- ════════════════════════════════════════════
      CATERING
 ════════════════════════════════════════════ -->
 <section id="catering" class="grain-overlay" style="background-color:var(--color-espresso);padding:6rem 0">
 
-  <!-- Stats bar -->
-  <div style="background:linear-gradient(135deg,var(--color-roast) 0%,var(--color-bark) 100%);padding:3rem 1.5rem;margin-bottom:5rem;position:relative;overflow:hidden">
-    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(184,115,51,.18) 0%,transparent 70%)"></div>
-    <div class="max-w-6xl mx-auto relative" style="z-index:2">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        <div class="reveal">
-          <p class="font-display font-black" style="font-size:clamp(2.5rem,5vw,4rem);color:var(--color-copper);letter-spacing:-.04em;line-height:1">1 200</p>
-          <p style="font-family:'Lora',serif;font-style:italic;font-size:.875rem;color:var(--color-parchment);margin-top:.25rem">káv denně</p>
-        </div>
-        <div class="reveal" data-delay="100">
-          <p class="font-display font-black" style="font-size:clamp(2.5rem,5vw,4rem);color:var(--color-copper);letter-spacing:-.04em;line-height:1">30+</p>
-          <p style="font-family:'Lora',serif;font-style:italic;font-size:.875rem;color:var(--color-parchment);margin-top:.25rem">let tradice</p>
-        </div>
-        <div class="reveal" data-delay="200">
-          <p class="font-display font-black" style="font-size:clamp(2.5rem,5vw,4rem);color:var(--color-copper);letter-spacing:-.04em;line-height:1">200+</p>
-          <p style="font-family:'Lora',serif;font-style:italic;font-size:.875rem;color:var(--color-parchment);margin-top:.25rem">spokojených akcí</p>
-        </div>
-        <div class="reveal" data-delay="300">
-          <p class="font-display font-black" style="font-size:clamp(2.5rem,5vw,4rem);color:var(--color-copper);letter-spacing:-.04em;line-height:1">2</p>
-          <p style="font-family:'Lora',serif;font-style:italic;font-size:.875rem;color:var(--color-parchment);margin-top:.25rem">typy vybavení</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <!-- Section intro -->
   <div class="max-w-6xl mx-auto px-6">
-    <div class="text-center mb-12 reveal">
+    <div class="text-center mb-10 reveal">
       <span class="section-label">Catering B2B</span>
       <h2 class="font-display font-bold" style="font-size:clamp(2rem,4vw,3rem);letter-spacing:-.03em;color:var(--color-cream);line-height:1.1;margin-bottom:1rem">
         Káva pro vaši akci.
@@ -1318,95 +1400,66 @@
       </p>
     </div>
 
-    <!-- Equipment options -->
-    <div class="grid md:grid-cols-2 gap-6 mb-12">
-      <div class="card-base reveal p-6" style="border-top:2px solid rgba(184,115,51,.4)">
-        <div class="img-overlay mb-5" style="border-radius:4px;height:180px">
-          <img src="https://placehold.co/600x240/4A2810/B87333?text=Citroën+H+Van" alt="Citroën H Van catering" loading="lazy">
-        </div>
-        <h3 class="font-display font-bold text-xl mb-2" style="color:var(--color-cream);letter-spacing:-.02em">Citroën H Van</h3>
-        <p style="font-size:.9rem;color:var(--color-parchment);margin-bottom:1rem">Ikonický van s plnou výbavou. Přijede, zaparkuje a stane se hvězdou vaší akce.</p>
-        <div class="flex flex-wrap gap-2">
-          <span style="font-size:.75rem;padding:.2rem .6rem;border-radius:100px;background:rgba(184,115,51,.15);color:var(--color-copper);font-family:'Lora',serif">Venkovní akce</span>
-          <span style="font-size:.75rem;padding:.2rem .6rem;border-radius:100px;background:rgba(184,115,51,.15);color:var(--color-copper);font-family:'Lora',serif">Festivaly</span>
-          <span style="font-size:.75rem;padding:.2rem .6rem;border-radius:100px;background:rgba(184,115,51,.15);color:var(--color-copper);font-family:'Lora',serif">Svatby</span>
-        </div>
-      </div>
-      <div class="card-base reveal p-6" data-delay="150" style="border-top:2px solid rgba(184,115,51,.4)">
-        <div class="img-overlay mb-5" style="border-radius:4px;height:180px">
-          <img src="https://placehold.co/600x240/2E1A0E/C9A84C?text=Mobilní+stánek" alt="Mobilní stánek catering" loading="lazy">
-        </div>
-        <h3 class="font-display font-bold text-xl mb-2" style="color:var(--color-cream);letter-spacing:-.02em">Mobilní stánek</h3>
-        <p style="font-size:.9rem;color:var(--color-parchment);margin-bottom:1rem">Elegantní přenosný bar pro interiéry. Vejde se kamkoliv, vypadá skvěle.</p>
-        <div class="flex flex-wrap gap-2">
-          <span style="font-size:.75rem;padding:.2rem .6rem;border-radius:100px;background:rgba(184,115,51,.15);color:var(--color-copper);font-family:'Lora',serif">Konference</span>
-          <span style="font-size:.75rem;padding:.2rem .6rem;border-radius:100px;background:rgba(184,115,51,.15);color:var(--color-copper);font-family:'Lora',serif">Firemní akce</span>
-          <span style="font-size:.75rem;padding:.2rem .6rem;border-radius:100px;background:rgba(184,115,51,.15);color:var(--color-copper);font-family:'Lora',serif">Vnitřní prostory</span>
-        </div>
-      </div>
+    <!-- Tab strip -->
+    <div style="position:relative;border-bottom:1px solid rgba(184,115,51,.2);display:flex">
+      <button class="catering-tab" id="ctab-van" data-ctarget="van"
+        style="flex:1;padding:1.25rem 1.5rem;font-size:clamp(1.05rem,1.8vw,1.3rem);font-weight:600;letter-spacing:-.01em;color:var(--color-cream);transition:color 250ms ease">
+        Citroën H Van
+      </button>
+      <button class="catering-tab" id="ctab-stanek" data-ctarget="stanek"
+        style="flex:1;padding:1.25rem 1.5rem;font-size:clamp(1.05rem,1.8vw,1.3rem);font-weight:600;letter-spacing:-.01em;color:rgba(245,237,214,.38);transition:color 250ms ease">
+        Mobilní stánek
+      </button>
+      <div id="ctab-indicator" style="position:absolute;bottom:-1px;left:0;width:50%;height:2px;background:linear-gradient(to right,transparent 0%,var(--color-copper) 30%,var(--color-copper) 70%,transparent 100%);transition:transform 380ms cubic-bezier(.34,1.2,.64,1)"></div>
     </div>
-
-    <!-- Packages -->
-    <div class="grid md:grid-cols-2 gap-6 mb-10">
-
-      <!-- Basic -->
-      <div class="card-base reveal p-7">
-        <p class="section-label" style="margin-bottom:.75rem">Základní balíček</p>
-        <p class="font-display font-black" style="font-size:2.5rem;color:var(--color-copper);letter-spacing:-.04em;line-height:1;margin-bottom:.25rem">7–8 tis.</p>
-        <p style="font-size:.8125rem;color:var(--color-parchment);margin-bottom:1.5rem;font-family:'Lora',serif">Kč + DPH</p>
-        <ul style="list-style:none;padding:0;margin:0 0 1.5rem 0;display:flex;flex-direction:column;gap:.625rem">
-          <li style="display:flex;align-items:center;gap:.625rem;font-size:.9rem;color:var(--color-parchment)"><span style="color:var(--color-copper);font-size:.75rem">●</span>1 barista</li>
-          <li style="display:flex;align-items:center;gap:.625rem;font-size:.9rem;color:var(--color-parchment)"><span style="color:var(--color-copper);font-size:.75rem">●</span>6 hodin provozu</li>
-          <li style="display:flex;align-items:center;gap:.625rem;font-size:.9rem;color:var(--color-parchment)"><span style="color:var(--color-copper);font-size:.75rem">●</span>Plné espresso menu</li>
-          <li style="display:flex;align-items:center;gap:.625rem;font-size:.9rem;color:var(--color-parchment)"><span style="color:var(--color-copper);font-size:.75rem">●</span>Výběrová káva HENRI</li>
-        </ul>
-        <button class="btn-secondary w-full" style="justify-content:center" onclick="openWizard()">Poptat základní</button>
-      </div>
-
-      <!-- Extended (recommended) -->
-      <div class="card-elevated reveal package-recommended p-7" data-delay="150">
-        <div class="package-badge">Nejoblíbenější</div>
-        <p class="section-label" style="margin-bottom:.75rem">Rozšířený balíček</p>
-        <p class="font-display font-black" style="font-size:2.5rem;color:var(--color-brass);letter-spacing:-.04em;line-height:1;margin-bottom:.25rem">13–14 tis.</p>
-        <p style="font-size:.8125rem;color:var(--color-parchment);margin-bottom:1.5rem;font-family:'Lora',serif">Kč + DPH</p>
-        <ul style="list-style:none;padding:0;margin:0 0 1.5rem 0;display:flex;flex-direction:column;gap:.625rem">
-          <li style="display:flex;align-items:center;gap:.625rem;font-size:.9rem;color:var(--color-parchment)"><span style="color:var(--color-brass);font-size:.75rem">●</span>2 baristé</li>
-          <li style="display:flex;align-items:center;gap:.625rem;font-size:.9rem;color:var(--color-parchment)"><span style="color:var(--color-brass);font-size:.75rem">●</span>Celý den provozu</li>
-          <li style="display:flex;align-items:center;gap:.625rem;font-size:.9rem;color:var(--color-parchment)"><span style="color:var(--color-brass);font-size:.75rem">●</span>Plné espresso menu</li>
-          <li style="display:flex;align-items:center;gap:.625rem;font-size:.9rem;color:var(--color-parchment)"><span style="color:var(--color-brass);font-size:.75rem">●</span>Výběrová káva HENRI</li>
-          <li style="display:flex;align-items:center;gap:.625rem;font-size:.9rem;color:var(--color-parchment)"><span style="color:var(--color-brass);font-size:.75rem">●</span>Možnost doplňků</li>
-        </ul>
-        <button class="btn-primary w-full" style="justify-content:center" onclick="openWizard()">Poptat rozšířený</button>
-      </div>
-
-    </div>
-
-    <!-- Add-ons -->
-    <div class="reveal p-6" style="border:1px dashed rgba(184,115,51,.3);border-radius:4px">
-      <p class="section-label" style="margin-bottom:.75rem">Doplňky</p>
-      <div class="grid md:grid-cols-2 gap-4">
-        <div style="display:flex;align-items:start;gap:1rem">
-          <span style="font-size:1.5rem;flex-shrink:0">🍰</span>
-          <div>
-            <p class="font-display font-bold" style="color:var(--color-cream);margin-bottom:.25rem">Vlastní cukrárna</p>
-            <p style="font-size:.875rem;color:var(--color-parchment)">Domácí dezerty a sladkosti z vlastní výroby — perfektní doplněk ke kávě.</p>
-          </div>
-        </div>
-        <div style="display:flex;align-items:start;gap:1rem">
-          <span style="font-size:1.5rem;flex-shrink:0">🍋</span>
-          <div>
-            <p class="font-display font-bold" style="color:var(--color-cream);margin-bottom:.25rem">Domácí limonády</p>
-            <p style="font-size:.875rem;color:var(--color-parchment)">Čerstvé limonády pro hosty, kteří nepijí kávu. Výroba na místě.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="text-center mt-12 reveal">
-      <button class="btn-primary" onclick="openWizard()" style="padding:.875rem 2.5rem;font-size:1rem">Poptat catering pro moji akci</button>
-    </div>
-
   </div>
+
+  <!-- Van panel -->
+  <div class="cpanel cpanel-entering" id="cpanel-van">
+    <div class="catering-split">
+      <div class="catering-img-col">
+        <img src="https://placehold.co/900x700/2E1A0E/B87333?text=Foto+Citroën+H+Van" alt="Citroën H Van catering" loading="lazy">
+        <div class="catering-img-fade"></div>
+      </div>
+      <div class="catering-text-col">
+        <p class="catering-eyebrow">Mobilní coffee bar &middot; outdoor</p>
+        <h3 class="font-display font-black catering-heading">Hvězda<br>vaší akce.</h3>
+        <p class="catering-desc">Citroën H Van z roku 1972 — kompletně přestavěný na prémiový coffee bar. Má svůj příběh, svůj charakter a okamžitě přitahuje pozornost. Přijede, zaparkuje a stane se středobodem celé vaší akce.</p>
+        <ul class="catering-features">
+          <li>Venkovní festivaly a kulturní akce</li>
+          <li>Svatby a soukromé oslavy v přírodě</li>
+          <li>Brand activations a pop-up eventy</li>
+          <li>Farmářské trhy a food festivaly</li>
+          <li>Výstavy, sportovní akce, open-air večírky</li>
+        </ul>
+        <button class="btn-primary catering-cta" onclick="openWizard()">Poptat Citroën H Van &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stánek panel -->
+  <div class="cpanel cpanel-hidden" id="cpanel-stanek">
+    <div class="catering-split">
+      <div class="catering-img-col">
+        <img src="https://placehold.co/900x700/2E1A0E/C9A84C?text=Foto+Mobilní+stánek" alt="Mobilní stánek catering" loading="lazy">
+        <div class="catering-img-fade"></div>
+      </div>
+      <div class="catering-text-col">
+        <p class="catering-eyebrow">Mobilní coffee bar &middot; interiér</p>
+        <h3 class="font-display font-black catering-heading">Bar,<br>který sedí všude.</h3>
+        <p class="catering-desc">Elegantní přenosný coffee bar navržený pro interiérové prostory. Vejde se kamkoliv — do hotelového lobby, konferenčního sálu i galerie — aniž by ztratil profesionální a prémiový dojem.</p>
+        <ul class="catering-features">
+          <li>Firemní konference a eventy</li>
+          <li>Hotely, galerie a luxusní interiéry</li>
+          <li>Soukromé večírky v uzavřených prostorách</li>
+          <li>Prodejní showroomy a prezentace</li>
+          <li>Rauty, plesy a gala večeře</li>
+        </ul>
+        <button class="btn-primary catering-cta" onclick="openWizard()">Poptat mobilní stánek &rarr;</button>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <!-- ════════════════════════════════════════════
@@ -1494,59 +1547,99 @@
 <!-- ════════════════════════════════════════════
      KONTAKT
 ════════════════════════════════════════════ -->
-<section id="kontakt" style="background-color:var(--color-espresso);padding:6rem 0;border-top:1px solid rgba(184,115,51,.15)">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="text-center mb-12 reveal">
-      <span class="section-label">Kontakt</span>
-      <h2 class="font-display font-bold" style="font-size:clamp(2rem,4vw,3rem);letter-spacing:-.03em;color:var(--color-cream);line-height:1.1">
-        Ozvěte se nám.
-      </h2>
+<section id="kontakt" style="background-color:var(--color-espresso);position:relative;overflow:hidden;padding:5rem 0 6rem">
+
+  <!-- Grain texture -->
+  <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;opacity:.04">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><filter id="kgrain"><feTurbulence type="fractalNoise" baseFrequency="0.68" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#kgrain)"/></svg>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-6" style="position:relative;z-index:1">
+
+    <!-- Section header -->
+    <div class="reveal" style="margin-bottom:3.5rem">
+      <span style="font-size:.5625rem;letter-spacing:.22em;text-transform:uppercase;color:var(--color-copper);font-family:'Lora',serif;display:block;margin-bottom:1rem">Kontakt</span>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:700;color:var(--color-cream);letter-spacing:-.04em;line-height:1;margin:0">Rádi vám <em style="color:var(--color-copper);font-style:italic">odpovíme.</em></h2>
     </div>
-    <div class="grid md:grid-cols-3 gap-8">
 
-      <!-- Contact details -->
-      <div class="reveal card-base p-6">
-        <p class="section-label" style="margin-bottom:1.25rem">Přímý kontakt</p>
-        <div style="display:flex;flex-direction:column;gap:1.25rem">
-          <div>
-            <p style="font-size:.75rem;color:var(--color-copper);font-family:'Lora',serif;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.25rem">Telefon</p>
-            <a href="tel:+420774227074" class="font-display font-bold text-lg" style="color:var(--color-cream);text-decoration:none;letter-spacing:-.01em;transition:color 200ms ease" onmouseover="this.style.color='var(--color-copper)'" onmouseout="this.style.color='var(--color-cream)'">(+420) 774 227 074</a>
-          </div>
-          <div>
-            <p style="font-size:.75rem;color:var(--color-copper);font-family:'Lora',serif;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.25rem">E-mail</p>
-            <a href="mailto:kava@henri.cz" class="font-display font-bold text-lg" style="color:var(--color-cream);text-decoration:none;letter-spacing:-.01em;transition:color 200ms ease" onmouseover="this.style.color='var(--color-copper)'" onmouseout="this.style.color='var(--color-cream)'">kava@henri.cz</a>
-          </div>
-          <div>
-            <p style="font-size:.75rem;color:var(--color-copper);font-family:'Lora',serif;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.25rem">IČ</p>
-            <p class="font-display font-bold" style="color:var(--color-cream);letter-spacing:-.01em">17731470</p>
-          </div>
-        </div>
-      </div>
+    <!-- Two columns -->
+    <div class="k-split" style="display:grid;grid-template-columns:1.1fr 1fr;gap:0;align-items:start;border:1px solid rgba(184,115,51,.15);border-radius:2px;overflow:hidden">
 
-      <!-- CTA card -->
-      <div class="reveal card-elevated p-6 text-center" data-delay="100" style="display:flex;flex-direction:column;align-items:center;justify-content:center">
-        <p class="font-display font-bold text-2xl mb-3" style="color:var(--color-cream);letter-spacing:-.03em;line-height:1.1">Máte zájem<br><em style="color:var(--color-copper)">o catering?</em></p>
-        <p style="font-size:.875rem;color:var(--color-parchment);margin-bottom:1.5rem">Vyplňte krátkou poptávku a ozveme se vám do 24 hodin.</p>
-        <button class="btn-primary" onclick="openWizard()">Poptat catering</button>
-      </div>
+      <!-- LEFT: Form -->
+      <div class="reveal" style="padding:3rem 3rem 3rem 3rem;border-right:1px solid rgba(184,115,51,.15)">
+        <form id="contact-form" style="display:flex;flex-direction:column;gap:1.75rem">
 
-      <!-- Roastery info -->
-      <div class="reveal card-base p-6" data-delay="200">
-        <p class="section-label" style="margin-bottom:1.25rem">Pražírna HENRI</p>
-        <div style="display:flex;flex-direction:column;gap:1.25rem">
-          <div>
-            <p style="font-size:.75rem;color:var(--color-copper);font-family:'Lora',serif;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.25rem">Sídlo pražírny</p>
-            <p style="color:var(--color-parchment);font-size:.9375rem">Holice, Olomouc</p>
-          </div>
-          <div>
-            <p style="font-size:.75rem;color:var(--color-copper);font-family:'Lora',serif;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem">Kamenné obchody</p>
-            <div style="display:flex;flex-direction:column;gap:.5rem">
-              <p style="color:var(--color-parchment);font-size:.875rem">📍 Ostružnická 5, Olomouc</p>
-              <p style="color:var(--color-parchment);font-size:.875rem">📍 Náves Svobody 17, Olomouc</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.75rem">
+            <div class="k-field">
+              <label class="k-label" for="k-name">Jméno a příjmení</label>
+              <input class="k-input" type="text" id="k-name" name="name" autocomplete="name" required placeholder="Jana Nováková">
+              <div class="k-line"></div>
+            </div>
+            <div class="k-field">
+              <label class="k-label" for="k-email">E-mail</label>
+              <input class="k-input" type="email" id="k-email" name="email" autocomplete="email" required placeholder="jana@firma.cz">
+              <div class="k-line"></div>
             </div>
           </div>
-          <a href="https://henri.cz" target="_blank" rel="noopener" class="btn-ghost">Navštívit henri.cz <span class="arrow">→</span></a>
+
+          <div class="k-field">
+            <label class="k-label" for="k-message">Zpráva</label>
+            <textarea class="k-input" id="k-message" name="message" rows="6" style="resize:none" required placeholder="Pište volně…"></textarea>
+            <div class="k-line"></div>
+          </div>
+
+          <div>
+            <button type="submit" class="k-submit">
+              <span>Odeslat zprávu</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M7 2.5l4.5 4.5L7 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- RIGHT: Info -->
+      <div class="reveal" data-delay="120" style="display:flex;flex-direction:column;gap:0;padding:3rem 3rem;background:rgba(0,0,0,.18)">
+
+        <!-- Contact block -->
+        <div style="padding-bottom:1.75rem">
+          <p class="k-info-label">Přímý kontakt</p>
+          <a href="tel:+420774227074" class="k-info-link" style="display:block;font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--color-cream);letter-spacing:-.02em;margin-top:.4rem;text-decoration:none;transition:color 200ms ease" onmouseover="this.style.color='var(--color-copper)'" onmouseout="this.style.color='var(--color-cream)'">(+420) 774 227 074</a>
+          <a href="mailto:kava@henri.cz" class="k-info-value k-info-link" style="display:block;font-style:italic;margin-top:.35rem">kava@henri.cz</a>
         </div>
+
+        <div style="height:1px;background:rgba(184,115,51,.15);margin-bottom:1.75rem"></div>
+
+        <!-- Address block -->
+        <div style="padding-bottom:1.75rem">
+          <p class="k-info-label">Pražírna HENRI</p>
+          <p class="k-info-value" style="margin-top:.4rem">Holice, Olomouc</p>
+          <p style="font-family:'Lora',serif;font-size:.8125rem;color:rgba(245,237,214,.3);font-style:italic;margin:.2rem 0 0">IČ: 17731470</p>
+        </div>
+
+        <div style="height:1px;background:rgba(184,115,51,.15);margin-bottom:1.75rem"></div>
+
+        <!-- Shops block -->
+        <div style="padding-bottom:1.75rem">
+          <p class="k-info-label">Kamenné obchody</p>
+          <div style="display:flex;flex-direction:column;gap:.4rem;margin-top:.4rem">
+            <p class="k-info-value" style="display:flex;align-items:center;gap:.65rem"><span style="width:4px;height:4px;border-radius:50%;background:var(--color-copper);flex-shrink:0"></span>Ostružnická 5, Olomouc</p>
+            <p class="k-info-value" style="display:flex;align-items:center;gap:.65rem"><span style="width:4px;height:4px;border-radius:50%;background:var(--color-copper);flex-shrink:0"></span>Náves Svobody 17, Olomouc</p>
+          </div>
+        </div>
+
+        <div style="height:1px;background:rgba(184,115,51,.15);margin-bottom:1.75rem"></div>
+
+        <!-- henri.cz + catering row -->
+        <div style="display:flex;flex-direction:column;gap:1.25rem">
+          <a href="https://henri.cz" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.6rem;font-family:'Lora',serif;font-size:.875rem;color:var(--color-copper);text-decoration:none;letter-spacing:.05em;text-transform:uppercase;transition:gap 250ms cubic-bezier(.34,1.56,.64,1)" onmouseover="this.style.gap='1rem'" onmouseout="this.style.gap='.6rem'">
+            <span>Navštívit henri.cz</span>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1.5 6h9M6.5 2l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+
+          <button class="btn-primary" onclick="openWizard()" style="align-self:flex-start;font-size:.875rem;padding:.75rem 1.75rem">Poptat catering</button>
+        </div>
+
       </div>
 
     </div>
@@ -1558,7 +1651,7 @@
 <!-- ════════════════════════════════════════════
      FOOTER
 ════════════════════════════════════════════ -->
-<footer style="background-color:var(--color-espresso);border-top:1px solid rgba(184,115,51,.1)">
+<footer style="background-color:var(--color-linen);border-top:1px solid rgba(184,115,51,.25)">
 
   <!-- Main body -->
   <div class="max-w-6xl mx-auto px-6" style="padding-top:4rem;padding-bottom:3.5rem">
@@ -1567,10 +1660,10 @@
       <!-- Wordmark -->
       <div>
         <div style="margin-bottom:1.75rem;line-height:1">
-          <div class="font-display font-black" style="font-size:clamp(2.75rem,4.5vw,4rem);color:var(--color-cream);letter-spacing:-.025em;line-height:.95">Henrietta</div>
+          <div class="font-display font-black" style="font-size:clamp(2.75rem,4.5vw,4rem);color:var(--color-espresso);letter-spacing:-.025em;line-height:.95">Henrietta</div>
           <div style="font-family:'Lora',serif;font-style:italic;font-size:clamp(.9rem,1.2vw,1.1rem);color:var(--color-copper);letter-spacing:.16em;margin-top:.4rem">Coffee</div>
         </div>
-        <p style="font-size:.875rem;color:rgba(245,237,214,.38);line-height:1.7;max-width:210px;font-family:'Lora',serif;font-style:italic">
+        <p style="font-size:.875rem;color:rgba(28,15,8,.45);line-height:1.7;max-width:210px;font-family:'Lora',serif;font-style:italic">
           Mobilní kavárna z Citroën H Vanu (1975). Výběrová káva od Pražírny HENRI.
         </p>
       </div>
@@ -1580,7 +1673,7 @@
 
         <!-- Kavárna -->
         <div>
-          <p style="font-size:.6875rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,237,214,.28);margin-bottom:1.4rem;font-family:'Lora',serif">Kavárna</p>
+          <p style="font-size:.6875rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(28,15,8,.35);margin-bottom:1.4rem;font-family:'Lora',serif">Kavárna</p>
           <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.85rem">
             <li><a href="#o-nas" class="footer-link">Náš příběh</a></li>
             <li><a href="#menu" class="footer-link">Menu & Káva</a></li>
@@ -1592,18 +1685,18 @@
 
         <!-- Pražírna HENRI -->
         <div>
-          <p style="font-size:.6875rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,237,214,.28);margin-bottom:1.4rem;font-family:'Lora',serif">Pražírna HENRI</p>
+          <p style="font-size:.6875rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(28,15,8,.35);margin-bottom:1.4rem;font-family:'Lora',serif">Pražírna HENRI</p>
           <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.85rem">
             <li><a href="https://henri.cz" target="_blank" rel="noopener" class="footer-link">henri.cz</a></li>
             <li><a href="https://henri.cz" target="_blank" rel="noopener" class="footer-link">Výběrové kávy</a></li>
-            <li><span style="font-size:.875rem;color:rgba(245,237,214,.32);font-family:'Lora',serif;font-style:italic">Ostružnická 5, Olomouc</span></li>
-            <li><span style="font-size:.875rem;color:rgba(245,237,214,.32);font-family:'Lora',serif;font-style:italic">Náves Svobody 17, Olomouc</span></li>
+            <li><span style="font-size:.875rem;color:rgba(28,15,8,.38);font-family:'Lora',serif;font-style:italic">Ostružnická 5, Olomouc</span></li>
+            <li><span style="font-size:.875rem;color:rgba(28,15,8,.38);font-family:'Lora',serif;font-style:italic">Náves Svobody 17, Olomouc</span></li>
           </ul>
         </div>
 
         <!-- Sledujte nás -->
         <div>
-          <p style="font-size:.6875rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,237,214,.28);margin-bottom:1.4rem;font-family:'Lora',serif">Sledujte nás</p>
+          <p style="font-size:.6875rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(28,15,8,.35);margin-bottom:1.4rem;font-family:'Lora',serif">Sledujte nás</p>
           <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.85rem">
             <li><a href="https://www.instagram.com/Henrietta_coffee" target="_blank" rel="noopener" class="footer-link">Instagram</a></li>
             <li><a href="#" class="footer-link">Facebook</a></li>
@@ -1616,25 +1709,11 @@
     </div>
   </div>
 
-  <!-- Newsletter + copyright bar -->
-  <div style="border-top:1px solid rgba(184,115,51,.1)">
-    <div class="max-w-6xl mx-auto px-6" style="padding-top:1.75rem;padding-bottom:1.75rem">
-
-      <!-- Newsletter row -->
-      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.25rem;margin-bottom:1.5rem">
-        <p style="font-family:'Lora',serif;font-size:.9375rem;color:rgba(245,237,214,.55)">Přihlaste se k odběru novinek.</p>
-        <form style="display:flex;gap:0;flex:0 1 380px" onsubmit="return false">
-          <input type="email" placeholder="E-mailová adresa" style="flex:1;padding:.6rem 1rem;background:transparent;border:1px solid rgba(245,237,214,.15);border-right:none;color:var(--color-parchment);font-size:.875rem;outline:none;font-family:'Lora',serif;transition:border-color 220ms ease;border-radius:0" onfocus="this.style.borderColor='rgba(184,115,51,.45)'" onblur="this.style.borderColor='rgba(245,237,214,.15)'">
-          <button type="submit" style="padding:.6rem 1.25rem;background:transparent;border:1px solid rgba(245,237,214,.15);color:rgba(245,237,214,.45);font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;font-family:'Lora',serif;white-space:nowrap;border-radius:0;transition:border-color 220ms ease,color 220ms ease" onmouseover="this.style.borderColor='rgba(184,115,51,.45)';this.style.color='var(--color-cream)'" onmouseout="this.style.borderColor='rgba(245,237,214,.15)';this.style.color='rgba(245,237,214,.45)'">Odebírat</button>
-        </form>
-      </div>
-
-      <!-- Copyright -->
-      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.75rem">
-        <p style="font-size:.75rem;color:rgba(245,237,214,.2);font-family:'Lora',serif">© 2025. Pražírna kávy HENRI, s. r. o. · IČ: 17731470</p>
-        <p style="font-size:.75rem;color:rgba(245,237,214,.2);font-family:'Lora',serif">Pro dotazy nás kontaktujte na <a href="mailto:kava@henri.cz" style="color:rgba(245,237,214,.35);text-decoration:none;transition:color 200ms ease" onmouseover="this.style.color='rgba(245,237,214,.55)'" onmouseout="this.style.color='rgba(245,237,214,.35)'">kava@henri.cz</a></p>
-      </div>
-
+  <!-- Copyright bar -->
+  <div style="border-top:1px solid rgba(28,15,8,.1)">
+    <div class="max-w-6xl mx-auto px-6" style="padding-top:1.25rem;padding-bottom:1.25rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.75rem">
+      <p style="font-size:.75rem;color:rgba(28,15,8,.35);font-family:'Lora',serif">© 2025. Pražírna kávy HENRI, s. r. o. · IČ: 17731470</p>
+      <p style="font-size:.75rem;color:rgba(28,15,8,.35);font-family:'Lora',serif">Pro dotazy nás kontaktujte na <a href="mailto:kava@henri.cz" style="color:rgba(28,15,8,.55);text-decoration:none;transition:color 200ms ease" onmouseover="this.style.color='rgba(28,15,8,.8)'" onmouseout="this.style.color='rgba(28,15,8,.55)'">kava@henri.cz</a></p>
     </div>
   </div>
 
@@ -1882,6 +1961,79 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── Stat count-up animation ──
+(function() {
+  function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
+
+  function formatSpaced(n) {
+    if (n < 1000) return String(n);
+    const thousands = Math.floor(n / 1000);
+    const remainder = String(n % 1000).padStart(3, '0');
+    return thousands + ' ' + remainder;
+  }
+
+  function animateStat(el) {
+    const target = parseInt(el.dataset.count, 10);
+    const suffix = el.dataset.suffix || '';
+    const spaced = el.dataset.format === 'spaced';
+    const duration = 1600;
+    const startTime = performance.now();
+
+    function tick(now) {
+      const t = Math.min((now - startTime) / duration, 1);
+      const value = Math.round(easeOutQuart(t) * target);
+      el.textContent = (spaced ? formatSpaced(value) : value) + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+      else el.textContent = (spaced ? formatSpaced(target) : target) + suffix;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = Number(entry.target.closest('[data-delay]')?.dataset.delay || 0);
+        setTimeout(() => animateStat(entry.target), delay);
+        statObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.stat-number').forEach(el => {
+    el.textContent = '0' + (el.dataset.suffix || '');
+    statObserver.observe(el);
+  });
+})();
+
+// ── Catering tabs ──
+(function() {
+  const tabs = document.querySelectorAll('.catering-tab');
+  const indicator = document.getElementById('ctab-indicator');
+  if (!tabs.length || !indicator) return;
+
+  tabs.forEach((tab, idx) => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.ctarget;
+
+      tabs.forEach(t => { t.style.color = 'rgba(245,237,214,.38)'; });
+      tab.style.color = 'var(--color-cream)';
+      indicator.style.transform = `translateX(${idx * 100}%)`;
+
+      document.querySelectorAll('.cpanel').forEach(p => {
+        p.classList.remove('cpanel-entering');
+        p.classList.add('cpanel-hidden');
+        p.style.display = 'none';
+      });
+
+      const panel = document.getElementById('cpanel-' + target);
+      panel.style.display = 'block';
+      panel.classList.remove('cpanel-hidden');
+      panel.offsetHeight;
+      panel.classList.add('cpanel-entering');
+    });
+  });
+})();
 
 // ── Milestone stepper ──
 function selectMilestone(index) {
