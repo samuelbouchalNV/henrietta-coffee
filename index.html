@@ -256,6 +256,131 @@
     .hero-subtitle { animation: fadeUp 700ms var(--ease-out-expo) 300ms both; text-shadow: 0 1px 10px rgba(0,0,0,.7); }
     .hero-ctas     { animation: fadeUp 700ms var(--ease-out-expo) 450ms both; }
 
+    /* ── O nás full-page split ── */
+    #o-nas {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 42% 58%;
+    }
+    @media (max-width: 767px) {
+      #o-nas { grid-template-columns: 1fr; }
+      .o-nas-photo { min-height: 65vw !important; }
+    }
+
+    /* ── Milestone: tablet + mobile layout ── */
+    @media (max-width: 1023px) {
+      .ms-card { flex-direction: column !important; }
+      .ms-track {
+        flex-direction: row !important;
+        width: 100% !important;
+        border-right: none !important;
+        border-bottom: 1px solid rgba(184,115,51,.12);
+        padding: .5rem .625rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: .25rem;
+      }
+      .ms-track::-webkit-scrollbar { display: none; }
+      .ms-track::before { display: none !important; }
+      .ms-item {
+        flex-direction: column !important;
+        align-items: center;
+        text-align: center;
+        flex: 1 1 0;
+        padding: .875rem .625rem !important;
+        gap: .35rem;
+        min-width: 76px;
+        border-radius: 6px;
+      }
+      .ms-dot-col { margin-top: 0 !important; width: 18px; height: 18px; }
+      .ms-year { font-size: 1rem !important; }
+      .ms-title { font-size: .5625rem !important; }
+      .ms-content-panel { padding: 1.75rem 1.5rem !important; min-height: auto !important; }
+    }
+
+    /* ── Vertical milestone navigator ── */
+    .ms-track {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .ms-track::before {
+      content: '';
+      position: absolute;
+      left: 23px;
+      top: 44px;
+      bottom: 44px;
+      width: 1px;
+      background: linear-gradient(to bottom, rgba(184,115,51,.55) 0%, rgba(184,115,51,.08) 100%);
+      pointer-events: none;
+    }
+    .ms-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.125rem;
+      padding: 1.25rem 1.5rem 1.25rem .75rem;
+      cursor: pointer;
+      position: relative;
+      border-radius: 6px;
+      transition: background 200ms ease;
+      user-select: none;
+    }
+    .ms-item:hover:not(.active) { background: rgba(184,115,51,.06); }
+    .ms-item.active { background: rgba(184,115,51,.1); }
+    .ms-dot-col {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      margin-top: 5px;
+    }
+    .ms-dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      border: 2px solid rgba(184,115,51,.28);
+      background: var(--color-linen);
+      transition: background 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+      position: relative;
+      z-index: 1;
+    }
+    .ms-item.active .ms-dot {
+      background: var(--color-copper);
+      border-color: var(--color-copper);
+      box-shadow: 0 0 0 5px rgba(184,115,51,.18), 0 0 0 9px rgba(184,115,51,.06);
+    }
+    .ms-item:hover:not(.active) .ms-dot {
+      border-color: rgba(184,115,51,.55);
+      background: rgba(184,115,51,.18);
+    }
+    .ms-year {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3125rem;
+      font-weight: 700;
+      color: rgba(74,40,16,.22);
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      transition: color 240ms ease;
+    }
+    .ms-item.active .ms-year { color: var(--color-copper); }
+    .ms-item:hover:not(.active) .ms-year { color: rgba(184,115,51,.55); }
+    .ms-title {
+      font-family: 'Lora', serif;
+      font-size: .6875rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(74,40,16,.2);
+      margin-top: .25rem;
+      transition: color 240ms ease;
+    }
+    .ms-item.active .ms-title { color: rgba(74,40,16,.55); }
+    .ms-item:hover:not(.active) .ms-title { color: rgba(74,40,16,.38); }
+    .ms-panel { display: none; animation: fadeUp 280ms var(--ease-out-expo) both; }
+    .ms-panel.active { display: block; }
+
     /* ── Section labels ── */
     .section-label {
       display: inline-block;
@@ -934,95 +1059,110 @@
 <!-- ════════════════════════════════════════════
      O NÁS
 ════════════════════════════════════════════ -->
-<section id="o-nas" style="background-color:var(--color-linen);padding:6rem 0">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
+<section id="o-nas" style="background-color:var(--color-linen)">
+  <div style="display:contents">
 
-      <!-- LEFT: Photo + milestones below -->
-      <div class="reveal" style="position:relative">
-
-        <!-- Portrait photo -->
-        <div style="position:relative;border-radius:4px;overflow:hidden;background:var(--color-linen);box-shadow:0 8px 40px rgba(28,15,8,.13);margin-bottom:2rem">
-          <img src="brand_assets/majitelka.jpg" alt="Jitka — zakladatelka Henrietta Coffee" loading="lazy"
-            style="width:100%;display:block;mix-blend-mode:multiply;filter:sepia(8%) saturate(95%) contrast(1.02)">
-          <div style="position:absolute;bottom:0;left:0;right:0;padding:1.25rem 1.5rem;background:linear-gradient(to top,rgba(28,15,8,.8) 0%,transparent 100%)">
-            <p class="font-display font-bold" style="font-size:1.125rem;color:var(--color-cream);letter-spacing:-.01em;line-height:1.2">Jitka Nošková</p>
-            <p style="font-family:'Lora',serif;font-style:italic;font-size:.8125rem;color:rgba(245,237,214,.75);margin-top:.15rem">zakladatelka · barista · snílek</p>
-          </div>
+      <!-- LEFT: Full-height photo -->
+      <div class="reveal o-nas-photo" style="position:relative;overflow:hidden;min-height:50vh">
+        <div style="position:absolute;inset:0;background:var(--color-linen)"></div>
+        <img src="brand_assets/majitelka.jpg" alt="Jitka — zakladatelka Henrietta Coffee" loading="lazy"
+          style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;mix-blend-mode:multiply;filter:sepia(8%) saturate(95%) contrast(1.02)">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:2rem 2.5rem;background:linear-gradient(to top,rgba(28,15,8,.78) 0%,transparent 100%);z-index:2">
+          <p class="font-display font-bold" style="font-size:1.375rem;color:var(--color-cream);letter-spacing:-.01em;line-height:1.2">Jitka Nošková</p>
+          <p style="font-family:'Lora',serif;font-style:italic;font-size:.875rem;color:rgba(245,237,214,.75);margin-top:.25rem">zakladatelka · barista · snílek</p>
         </div>
-        <!-- Decorative copper corner -->
-        <div style="position:absolute;top:-1rem;left:-1rem;width:2.5rem;height:2.5rem;border-top:3px solid var(--color-copper);border-left:3px solid var(--color-copper)"></div>
-
-        <!-- Timeline milestones -->
-        <div style="position:relative;padding-left:1.75rem">
-          <div style="position:absolute;left:.5rem;top:6px;bottom:6px;width:2px;background:linear-gradient(to bottom,var(--color-copper),rgba(184,115,51,.1))"></div>
-
-          <div style="position:relative;margin-bottom:1.5rem">
-            <div style="position:absolute;left:-1.75rem;top:.2rem;width:12px;height:12px;border-radius:50%;background:var(--color-copper);border:2px solid var(--color-linen);box-shadow:0 0 0 2px var(--color-copper)"></div>
-            <p style="font-size:.6875rem;font-weight:700;color:var(--color-copper);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.15rem;font-family:'Lora',serif">2010</p>
-            <p style="font-size:.875rem;color:var(--color-bark);line-height:1.6">První stánek s Pražírnou HENRI — víkendy blíž k lidem.</p>
-          </div>
-
-          <div style="position:relative;margin-bottom:1.5rem">
-            <div style="position:absolute;left:-1.75rem;top:.2rem;width:12px;height:12px;border-radius:50%;background:var(--color-copper);border:2px solid var(--color-linen);box-shadow:0 0 0 2px var(--color-copper)"></div>
-            <p style="font-size:.6875rem;font-weight:700;color:var(--color-copper);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.15rem;font-family:'Lora',serif">2018</p>
-            <p style="font-size:.875rem;color:var(--color-bark);line-height:1.6">Po dvaceti letech v realitách — skok do kávového světa naplno.</p>
-          </div>
-
-          <div style="position:relative;margin-bottom:1.5rem">
-            <div style="position:absolute;left:-1.75rem;top:.2rem;width:12px;height:12px;border-radius:50%;background:var(--color-copper);border:2px solid var(--color-linen);box-shadow:0 0 0 2px var(--color-copper)"></div>
-            <p style="font-size:.6875rem;font-weight:700;color:var(--color-copper);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.15rem;font-family:'Lora',serif">Vznik Henrietty</p>
-            <p style="font-size:.875rem;color:var(--color-bark);line-height:1.6">HENRI + ženská esence. Citroën H Van (1975) — domov na kolech.</p>
-          </div>
-
-          <div style="position:relative">
-            <div style="position:absolute;left:-1.75rem;top:.2rem;width:12px;height:12px;border-radius:50%;background:var(--color-linen);border:2px solid var(--color-copper);box-shadow:0 0 0 2px var(--color-copper)"></div>
-            <p style="font-size:.6875rem;font-weight:700;color:var(--color-copper);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.15rem;font-family:'Lora',serif">Dnes</p>
-            <p style="font-size:.875rem;color:var(--color-bark);line-height:1.6">Bez pevného místa, s pevnými hodnotami. Přátelé po boku.</p>
-          </div>
-        </div>
-
+        <div style="position:absolute;top:2.5rem;left:2.5rem;width:2.5rem;height:2.5rem;border-top:3px solid var(--color-copper);border-left:3px solid var(--color-copper);z-index:3"></div>
       </div>
 
-      <!-- RIGHT: Full-height story text -->
-      <div class="reveal" data-delay="150" style="display:flex;flex-direction:column;justify-content:center">
-        <span class="section-label">Náš příběh</span>
-        <h2 class="font-display font-bold" style="font-size:clamp(2rem,4vw,3rem);letter-spacing:-.03em;color:var(--color-espresso);line-height:1.1;margin-bottom:1.75rem">
+      <!-- RIGHT: Story + interactive milestones -->
+      <div class="reveal" data-delay="120" style="background-color:var(--color-linen);padding:clamp(3rem,6vw,6rem) clamp(2rem,5vw,5rem);display:flex;flex-direction:column;justify-content:center;gap:0">
+
+        <span class="section-label" style="margin-bottom:1.25rem">Náš příběh</span>
+        <h2 class="font-display font-bold" style="font-size:clamp(2rem,3.5vw,3rem);letter-spacing:-.03em;color:var(--color-espresso);line-height:1.1;margin-bottom:1.25rem">
           Z realit do<br><em style="color:var(--color-copper)">kávové reality.</em>
         </h2>
-        <p style="color:var(--color-bark);margin-bottom:1.25rem;line-height:1.8;font-size:1rem">
-          Začalo to o víkendech v roce 2010 — s manželem a stánkem <strong style="color:var(--color-roast)">Pražírny HENRI</strong> jsme vyráželi blíž k lidem. Připravovali jsme voňavou kávu, rozdávali úsměvy a šířili dobrou náladu.
-        </p>
-        <p style="color:var(--color-bark);margin-bottom:1.25rem;line-height:1.8;font-size:1rem">
-          V roce 2018 jsem po dvaceti letech opustila realitní svět. Od té doby žiju naplno kávou — a nelituju jediný den.
-        </p>
-        <p style="color:var(--color-bark);margin-bottom:1.25rem;line-height:1.8;font-size:1rem">
-          Později vznikla <strong style="color:var(--color-roast)">Henrietta Coffee</strong> — část HENRI zůstala, jen zjemněná ženskou esencí. Nepotřebuji pevné místo ani kavárnu. Působím tam, kde je mi dobře.
-        </p>
-        <p style="color:var(--color-bark);margin-bottom:2.5rem;line-height:1.8;font-size:1rem">
-          Dnes mi na stáncích pomáhají přátelé, kteří sdílí stejné hodnoty. Mám zázemí pro dvě místa a v hlavě nové sny.
+        <p style="color:var(--color-bark);line-height:1.8;font-size:.9375rem;margin-bottom:2.25rem;max-width:520px">
+          Čtyři kapitoly, jeden příběh — od prvního víkendového stánku po Citroën z roku 1975 a dnešní Henriettu, která jezdí tam, kde ji lidi chtějí mít. Klikněte na kapitolu a přečtěte si ji.
         </p>
 
-        <!-- Pull quote -->
-        <div style="border-left:3px solid var(--color-copper);padding:1rem 1.5rem;background:rgba(184,115,51,.07);border-radius:0 4px 4px 0;margin-bottom:2rem">
-          <p style="font-family:'Lora',serif;font-style:italic;font-size:1.0625rem;color:var(--color-roast);line-height:1.65">
-            „Jsem vděčná, že je se mnou píšete každý den."
-          </p>
-          <p style="font-size:.8125rem;color:var(--color-bark);margin-top:.5rem;font-family:'Lora',serif">— Jitka, zakladatelka Henrietta Coffee</p>
+        <!-- Vertical milestone nav + content panel -->
+        <div class="ms-card" style="display:flex;align-items:stretch;border-radius:10px;overflow:hidden;border:1px solid rgba(184,115,51,.14);background:rgba(255,255,255,.6);box-shadow:0 4px 32px rgba(28,15,8,.06)">
+
+          <!-- Milestone navigator (left) -->
+          <div class="ms-track" style="flex-shrink:0;width:240px;border-right:1px solid rgba(184,115,51,.1);padding:.75rem">
+            <div class="ms-item active" onclick="selectMilestone(0)">
+              <div class="ms-dot-col"><div class="ms-dot"></div></div>
+              <div>
+                <div class="ms-year">2010</div>
+                <div class="ms-title">První stánek</div>
+              </div>
+            </div>
+            <div class="ms-item" onclick="selectMilestone(1)">
+              <div class="ms-dot-col"><div class="ms-dot"></div></div>
+              <div>
+                <div class="ms-year">2018</div>
+                <div class="ms-title">Velký skok</div>
+              </div>
+            </div>
+            <div class="ms-item" onclick="selectMilestone(2)">
+              <div class="ms-dot-col"><div class="ms-dot"></div></div>
+              <div>
+                <div class="ms-year">Henrietta</div>
+                <div class="ms-title">Van ožívá</div>
+              </div>
+            </div>
+            <div class="ms-item" onclick="selectMilestone(3)">
+              <div class="ms-dot-col"><div class="ms-dot"></div></div>
+              <div>
+                <div class="ms-year">Dnes</div>
+                <div class="ms-title">Na cestách</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content panel (right) -->
+          <div class="ms-content-panel" style="flex:1;padding:2.5rem 2.75rem;min-height:340px;display:flex;align-items:flex-start">
+            <div style="width:100%">
+
+              <div class="ms-panel active">
+                <p style="font-size:.625rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--color-copper);font-family:'Lora',serif;margin-bottom:.875rem">2010 · Začátek</p>
+                <p class="font-display font-bold" style="font-size:1.375rem;color:var(--color-espresso);margin-bottom:1rem;letter-spacing:-.02em;line-height:1.2">První stánek</p>
+                <p style="font-size:.9375rem;color:var(--color-bark);line-height:1.8;margin-bottom:.875rem">O víkendech jsme s manželem vyráželi blíž k lidem. Se stánkem <strong style="color:var(--color-roast)">Pražírny HENRI</strong> jsme připravovali voňavou kávu na trzích, farmářských trzích a kulturních akcích po celém Olomouci — rozdávali úsměvy a šířili dobrou náladu.</p>
+                <p style="font-size:.9375rem;color:var(--color-bark);line-height:1.8;margin-bottom:.875rem">Bylo to nenápadné testování: chce svět to, co máme rádi my? Odpověď přišla rychle — a byla jasná. Lidé se vraceli, ptali se, kde nás příště najdou.</p>
+                <p style="font-size:.9375rem;color:var(--color-bark);line-height:1.8">Ta léta byla škola v nejlepším slova smyslu. Naučila mě, co dobrá káva udělá s člověkem — a co dobrý člověk udělá s kávou.</p>
+              </div>
+
+              <div class="ms-panel">
+                <p style="font-size:.625rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--color-copper);font-family:'Lora',serif;margin-bottom:.875rem">2018 · Zlomový bod</p>
+                <p class="font-display font-bold" style="font-size:1.375rem;color:var(--color-espresso);margin-bottom:1rem;letter-spacing:-.02em;line-height:1.2">Skok do kávového světa</p>
+                <p style="font-size:.9375rem;color:var(--color-bark);line-height:1.8;margin-bottom:.875rem">Po dvaceti letech v realitách přišel čas říct dost a začít žít naplno. Opustila jsem jistotu kanceláře, pevný plat i kariéru — a vrhla se do kávového světa bez záchranné sítě.</p>
+                <p style="font-size:.9375rem;color:var(--color-bark);line-height:1.8;margin-bottom:.875rem">Strach byl. Ale byl menší než ta touha. A výsledek? Každé ráno vstávám s tím, že vím, proč to dělám. Každý šálek, který připravím, má příběh — a já jsem jeho součástí.</p>
+                <p style="font-size:.9375rem;color:var(--color-bark);line-height:1.8">Dnes si to neumím představit jinak. Nejednou se ze zákazníka stane kamarád. A někdy — pravý kávofilní parťák na celý život.</p>
+              </div>
+
+              <div class="ms-panel">
+                <p style="font-size:.625rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--color-copper);font-family:'Lora',serif;margin-bottom:.875rem">Henrietta Coffee · Vznik</p>
+                <p class="font-display font-bold" style="font-size:1.375rem;color:var(--color-espresso);margin-bottom:1rem;letter-spacing:-.02em;line-height:1.2">HENRI + ženská esence</p>
+                <p style="font-size:.9375rem;color:var(--color-bark);line-height:1.8;margin-bottom:.875rem">Našla jsem <strong style="color:var(--color-roast)">Citroën H Van z roku 1975</strong> — a ihned jsem věděla, že je to ona. Dvě léta láskyplného restaurování, stovky hodin detailů, potu a péče. Každý šroub na svém místě, každá barva záměrná.</p>
+                <p style="font-size:.9375rem;color:var(--color-bark);line-height:1.8;margin-bottom:.875rem">Henrietta je část HENRI zjemněná ženskou esencí. Tradice třiceti let pražení + moderní cit pro detail + pojízdný domov s vlastní duší. Výsledek je víc než kavárna.</p>
+                <p style="font-size:.9375rem;color:var(--color-bark);line-height:1.8">Je to zážitek, který si lidi pamatují. A my jsme rádi, že jim ho můžeme dávat — kdekoliv se potkáme.</p>
+              </div>
+
+              <div class="ms-panel">
+                <p style="font-size:.625rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--color-copper);font-family:'Lora',serif;margin-bottom:.875rem">Dnes · Přítomnost</p>
+                <p class="font-display font-bold" style="font-size:1.375rem;color:var(--color-espresso);margin-bottom:1rem;letter-spacing:-.02em;line-height:1.2">Kávová nomádka</p>
+                <p style="font-size:.9375rem;color:var(--color-bark);line-height:1.8;margin-bottom:.875rem">Bez pevného místa, ale s pevnými hodnotami. Po boku mám přátele, kteří sdílí stejný pohled na kávu i na svět — lidi, pro které kvalita není kompromis a úsměv je součást receptu.</p>
+                <p style="font-size:.9375rem;color:var(--color-bark);line-height:1.8;margin-bottom:.875rem">Zázemí mám pro dvě místa: Henrietta a mobilní stánek pro interiéry. V hlavě nové sny, v šálku poctivá práce. A na kalendáři — svatby, firemní akce, festivaly a trhy po celé republice.</p>
+                <p style="font-size:.9375rem;color:var(--color-bark);line-height:1.8">Jezdíme tam, kde nás lidi chtějí mít. A věřte mi — je to správné rozhodnutí. Pokaždé.</p>
+              </div>
+
+            </div>
+          </div>
+
         </div>
 
-        <!-- Shop addresses -->
-        <div class="flex flex-wrap gap-3">
-          <span style="display:inline-flex;align-items:center;gap:.5rem;padding:.375rem .875rem;border:1px solid rgba(74,40,16,.25);border-radius:100px;font-family:'Lora',serif;font-size:.8125rem;color:var(--color-bark)">
-            📍 Ostružnická 5, Olomouc
-          </span>
-          <span style="display:inline-flex;align-items:center;gap:.5rem;padding:.375rem .875rem;border:1px solid rgba(74,40,16,.25);border-radius:100px;font-family:'Lora',serif;font-size:.8125rem;color:var(--color-bark)">
-            📍 Náves Svobody 17, Olomouc
-          </span>
-        </div>
       </div>
 
-    </div>
   </div>
 </section>
 
@@ -1742,6 +1882,12 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── Milestone stepper ──
+function selectMilestone(index) {
+  document.querySelectorAll('.ms-item').forEach((n, i) => n.classList.toggle('active', i === index));
+  document.querySelectorAll('.ms-panel').forEach((p, i) => p.classList.toggle('active', i === index));
+}
 </script>
 
 
